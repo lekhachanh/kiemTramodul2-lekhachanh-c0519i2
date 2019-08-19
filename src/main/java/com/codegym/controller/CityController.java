@@ -88,4 +88,17 @@ public class CityController {
         cityService.remove(city.getId());
        return "redirect:list";
     }
+
+    @GetMapping("/view/{id}")
+    public ModelAndView viewCityForm(@PathVariable Long id) {
+        City city = cityService.findById(id);
+        if (city != null) {
+            ModelAndView modelAndView = new ModelAndView("/city/view");
+            modelAndView.addObject("city", city);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/error-404");
+            return modelAndView;
+        }
+    }
 }
