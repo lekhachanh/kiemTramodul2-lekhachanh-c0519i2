@@ -14,6 +14,7 @@
         <th>Area</th>
         <th>Population</th>
         <th>GDP</th>
+        <th>Introduction</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -24,6 +25,7 @@
             <td th:text="${city.area}"></td>
             <td th:text="${city.population}"></td>
             <td th:text="${city.gdp}"></td>
+            <td th:text="${city.introduction}"></td>
             <td><a th:href="@{/city/edit/__${city.id}__}">Edit</a></td>
             <td><a th:href="@{/city/delete/__${city.id}__}">Delete</a></td>
         </tr>
