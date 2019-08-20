@@ -7,8 +7,12 @@ import com.codegym.service.CityService;
 import com.codegym.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/city")
@@ -40,12 +44,18 @@ public class CityController {
     }
 
     @PostMapping("/save")
-    public ModelAndView saveCity(@ModelAttribute("city") City city) {
-        cityService.save(city);
-        ModelAndView modelAndView = new ModelAndView(("/city/create"));
-        modelAndView.addObject("city", new City());
-        modelAndView.addObject("message", "new city created");
-        return modelAndView;
+    public ModelAndView saveCity(@Validated @ModelAttribute("city") City city, BindingResult bindingResult) {
+        if (bindingResult.hasFieldErrors()) {
+            ModelAndView modelAndView = new ModelAndView(("/city/create"));
+            return modelAndView;
+        }else {
+            cityService.save(city);
+            ModelAndView modelAndView = new ModelAndView(("/city/create"));
+            modelAndView.addObject("city", new City());
+            modelAndView.addObject("message", "new city created");
+            return modelAndView;
+        }
+
     }
 
     @GetMapping("/edit/{id}")

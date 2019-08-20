@@ -1,7 +1,10 @@
 package com.codegym.model;
 
+
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "city")
@@ -13,7 +16,11 @@ public class City {
     @JoinColumn(name = "country")
     private Country country;
 
+    @NotEmpty
+    @Size(min = 2, max = 30)
     private String name;
+
+
     private Double area;
     private Double population;
     private Long gdp;
