@@ -28,20 +28,23 @@
         <tr>
             <td>Area:</td>
             <td><input type="text" th:field="*{area}"/></td>
+            <td th:if="${#fields.hasErrors('area')}" th:errors="*{area}">Name Error</td>
         </tr>
         <tr>
             <td>Population:</td>
             <td><input type="text" th:field="*{population}"/></td>
+            <td th:if="${#fields.hasErrors('population')}" th:errors="*{population}">Name Error</td>
         </tr>
         <tr>
             <td>GDP:</td>
             <td><input type="text" th:field="*{gdp}"/></td>
+            <td th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}">Name Error</td>
         </tr>
         <tr>
             <td>Introduction:</td>
             <td><input type="text" th:field="*{introduction}"/></td>
+            <td th:if="${#fields.hasErrors('introduction')}" th:errors="*{introduction}">Name Error</td>
         </tr>
-
         <tr>
             <td></td>
             <td><input type="submit" value="Create city"></td>

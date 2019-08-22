@@ -1,10 +1,8 @@
 package com.codegym.model;
 
 
-
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "city")
@@ -20,8 +18,10 @@ public class City {
     @Size(min = 2, max = 30)
     private String name;
 
-
-    private Double area;
+    @Pattern(regexp = "^[0-9]*$", message = "must be  number")
+    @NotEmpty
+//    @Pattern(regexp = "/^[\\d]$/]")
+    private String area;
     private Double population;
     private Long gdp;
     private String introduction;
@@ -29,7 +29,7 @@ public class City {
     public City() {
     }
 
-    public City(Country country, String name, Double area, Double population, Long gdp, String introduction) {
+    public City(Country country, String name, String area, Double population, Long gdp, String introduction) {
         this.country = country;
         this.name = name;
         this.area = area;
@@ -62,11 +62,11 @@ public class City {
         this.name = name;
     }
 
-    public Double getArea() {
+    public String getArea() {
         return area;
     }
 
-    public void setArea(Double area) {
+    public void setArea(String area) {
         this.area = area;
     }
 
